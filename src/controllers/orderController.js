@@ -1,4 +1,5 @@
 const supabase = require('../config/supabase');
+const { sendOrderConfirmationEmail } = require('../utils/emailService')
 
 // 1. CREAR UNA NUEVA ORDEN (Checkout del Frontend)
 const createOrder = async (req, res) => {
@@ -11,28 +12,14 @@ const createOrder = async (req, res) => {
         }
 
         // --- PASO 1: GESTIONAR EL CLIENTE ---
-        let customer_id;
-        
-        // Buscamos si el cliente ya existe por su DNI
-        const { data: existingCustomer, error: searchError } = await supabase
+        // Supabase "upsert": Si el DNI no existe lo crea. Si ya existe, actualiza sus datos y nos devuelve el ID. ¡Sin validar manualmente!
+        const { data: savedCustomer, error: customerError } = await supabase
             .from('customers')
-            .select('id')
-            .eq('dni', customer.dni)
-            .single();
+            .upsert([customer], { onConflict: 'dni' }) 
+            .select();
 
-        if (existingCustomer) {
-            customer_id = existingCustomer.id;
-            // Opcional: Podrías hacer un update aquí si quieres actualizar su dirección
-        } else {
-            // Si no existe, lo creamos
-            const { data: newCustomer, error: createError } = await supabase
-                .from('customers')
-                .insert([customer])
-                .select();
-                
-            if (createError) throw createError;
-            customer_id = newCustomer[0].id;
-        }
+        if (customerError) throw customerError;
+        const customer_id = savedCustomer[0].id;
 
         // --- PASO 2: CREAR LA ORDEN ---
         const { data: newOrder, error: orderError } = await supabase
@@ -57,6 +44,18 @@ const createOrder = async (req, res) => {
             .insert(orderItemsToInsert);
 
         if (itemsError) throw itemsError;
+
+        // --- NUEVO PASO 4: ENVIAR EL CORREO ---
+        // Creamos un objeto con toda la info para pasársela al generador de PDF
+        const fullOrderData = {
+            order_id,
+            customer,
+            items,
+            total_amount
+        };
+        // Ejecutamos el envío de correo PERO NO le ponemos "await".
+        // Así el servidor le responde rápido al cliente (¡Pedido Confirmado!)
+        sendOrderConfirmationEmail(fullOrderData);
 
         // ¡Éxito!
         res.status(201).json({ 

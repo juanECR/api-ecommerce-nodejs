@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación de Pedido</title>
+</head>
+<body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 40px 0;">
+
+    <!-- Contenedor Principal -->
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+        
+        <!-- Cabecera -->
+        <div style="background-color: #111827; padding: 25px 30px; text-align: center; border-bottom: 4px solid #FF6B00;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">WAZY CORP <span style="color: #FF6B00;">.</span></h1>
+        </div>
+
+        <!-- Cuerpo del correo -->
+        <div style="padding: 35px 30px;">
+            <h2 style="color: #111827; font-size: 22px; margin: 0 0 10px;">¡Hola, {{FIRST_NAME}}! 🎉</h2>
+            
+            <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin: 0 0 25px;">
+                Hemos recibido tu pedido <strong style="color: #111827;">#{{ORDER_ID}}</strong>. Para que podamos procesarlo y enviarlo lo antes posible, por favor completa los siguientes <strong style="color: #FF6B00;">3 sencillos pasos</strong>:
+            </p>
+
+            <!-- Total resaltado -->
+            <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 30px;">
+                <span style="font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px; font-weight: 600;">Total a pagar</span>
+                <span style="font-size: 32px; font-weight: 800; color: #111827;">S/ {{TOTAL}}</span>
+            </div>
+
+            <!-- PASO 1: Realizar el pago -->
+            <div style="background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="40" valign="top">
+                            <div style="background-color: #FF6B00; color: #ffffff; width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 32px; font-weight: 700; font-size: 16px;">1</div>
+                        </td>
+                        <td style="padding-left: 12px; vertical-align: middle;">
+                            <h3 style="margin: 0; font-size: 17px; color: #111827; font-weight: 700;">Realiza el pago</h3>
+                            <p style="margin: 4px 0 0; font-size: 14px; color: #6b7280;">Transfiere a cualquiera de estas cuentas:</p>
+                        </td>
+                    </tr>
+                </table>
+                
+                <!-- Bloque Yape -->
+                <div style="margin-top: 16px; background-color: #f9fafb; border-radius: 8px; padding: 16px; border-left: 4px solid #FF6B00;">
+                    <p style="margin: 0 0 4px; font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Yape</p>
+                    <p style="margin: 0; font-size: 18px; color: #111827; font-weight: 700;">967 083 352</p>
+                    <p style="margin: 4px 0 0; font-size: 13px; color: #4b5563;">Titular: Juan E. Cunto</p> 
+                </div>
+
+                <!-- Bloque BCP -->
+                <div style="margin-top: 12px; background-color: #f9fafb; border-radius: 8px; padding: 16px; border-left: 4px solid #111827;">
+                    <p style="margin: 0 0 4px; font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Cuenta BCP</p>
+                    <p style="margin: 0; font-size: 18px; color: #111827; font-weight: 700;">22091364118088</p>
+                    <p style="margin: 4px 0 0; font-size: 13px; color: #4b5563;">Cuenta Corriente | Titular: Juan E. Cunto</p> 
+                </div>
+            </div>
+
+            <!-- PASO 2: Tomar captura -->
+            <div style="background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="40" valign="top">
+                            <div style="background-color: #FF6B00; color: #ffffff; width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 32px; font-weight: 700; font-size: 16px;">2</div>
+                        </td>
+                        <td style="padding-left: 12px; vertical-align: middle;">
+                            <h3 style="margin: 0; font-size: 17px; color: #111827; font-weight: 700;">Toma una captura</h3>
+                            <p style="margin: 4px 0 0; font-size: 14px; color: #6b7280;">Saca una captura de pantalla o foto clara del voucher/comprobante de tu pago exitoso.</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- PASO 3: Enviar por WhatsApp -->
+            <div style="background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="40" valign="top">
+                            <div style="background-color: #FF6B00; color: #ffffff; width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 32px; font-weight: 700; font-size: 16px;">3</div>
+                        </td>
+                        <td style="padding-left: 12px; vertical-align: middle;">
+                            <h3 style="margin: 0; font-size: 17px; color: #111827; font-weight: 700;">Envíanos el comprobante</h3>
+                            <p style="margin: 4px 0 0; font-size: 14px; color: #6b7280;">Escríbenos por WhatsApp, adjunta la captura y confirma tu código.</p>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    
+                    <a href="https://wa.me/+51967083352?text=Hola,%20adjunto%20mi%20comprobante%20de%20pago%20para%20el%20pedido:%20#{{ORDER_ID}}" style="display: inline-block; background-color: #111827; color: #ffffff; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 8px; letter-spacing: 0.5px; border: 2px solid #111827;">
+                        💬 Enviar por WhatsApp
+                    </a>
+                    <p style="margin: 14px 0 0; font-size: 13px; color: #6b7280;">
+                        Tu código de pedido es: <strong style="color: #FF6B00; font-size: 14px;">#{{ORDER_ID}}</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Nota sobre el PDF -->
+            <div style="background-color: #f9fafb; padding: 16px; border-radius: 8px; text-align: center; margin-top: 25px; border: 1px dashed #d1d5db;">
+                <p style="color: #4b5563; font-size: 14px; line-height: 1.5; margin: 0;">
+                    📄 <strong>Nota:</strong> Hemos adjuntado un <b>PDF</b> a este correo con el detalle exacto de los productos importados de tu pedido.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background-color: #111827; padding: 30px; text-align: center;">
+            <p style="color: #9ca3af; font-size: 12px; margin: 0 0 8px;">
+                © 2026 Wazy corp. Todos los derechos reservados.
+            </p>
+            <p style="color: #6b7280; font-size: 12px; margin: 0;">
+                ¿Dudas sobre tu pedido? Responde directamente a este correo.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
