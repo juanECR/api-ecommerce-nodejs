@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000;
 
 // Lista blanca de dominios
 const whitelist = [
-  'https://wazyperu.cwefy.com/', // Producción
+  'https://wazyperu.cwefy.com', // Producción
   'http://localhost:5173'          // Desarrollo (Ej: Vite/React)
 ];
 
