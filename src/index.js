@@ -31,3 +31,5 @@ app.use('/api/orders', require('./routes/orderRoutes'));
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
 });
+
+module.exports = app;
