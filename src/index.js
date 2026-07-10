@@ -8,9 +8,24 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+// Lista blanca de dominios
+const whitelist = [
+  'https://wazyperu.cwefy.com/', // Producción
+  'http://localhost:5173'          // Desarrollo (Ej: Vite/React)
+];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Si el origen está en la lista blanca, o si no hay origen (ej. Postman o llamadas servidor a servidor)
+    if (!origin || whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Acceso denegado por la política de CORS'));
+    }
+  }
+};
 //Middlewares globales
-app.use(cors()); // permite peticiones del frontend
+app.use(cors(corsOptions)); // permite peticiones del frontend
 app.use(morgan('dev')); //mostrar log en consola
 app.use(express.json()); // Permite que el servidor entienda datos en formato JSON
 
